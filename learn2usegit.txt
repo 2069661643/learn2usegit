@@ -1,0 +1,14 @@
+$ git add <file> ...(<file>) % 修改/创建加入暂存
+$ git rm <file> ...(<file>) % 删除加入暂存
+
+$ git commit -m "注释" % 提交暂存
+
+$ git reset --hard HEAD^ % 版本回退
+% HEAD^^ == HEAD~2 == 回退2个版本
+$ git reset HEAD % 回退工作区(上一次提交)
+$ git checkout -- <file> ...(<file>) % 删除暂存区
+
+$ git status % 检查未提交修改
+
+$ git log 
+$ git relog
