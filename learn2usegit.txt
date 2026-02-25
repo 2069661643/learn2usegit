@@ -4,11 +4,13 @@ $ git rm <file> ...(<file>) % 删除加入暂存
 $ git commit -m "注释" % 提交暂存
 
 $ git reset --hard HEAD^ % 版本回退
+% --soft 软回退, 不回退工作区
 % HEAD^^ == HEAD~2 == 回退2个版本
+% HEAD^ 也可以替换成对应HASH码
 $ git reset HEAD % 回退工作区(上一次提交)
 $ git checkout -- <file> ...(<file>) % 删除暂存区
 
 $ git status % 检查未提交修改
 
-$ git log 
-$ git relog
+$ git log % 查看提交日志
+$ git reflog % 查看变动日志(用于追踪HASH值)
