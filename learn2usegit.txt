@@ -8,20 +8,60 @@ $ git rm <file> ...(<file>) % 删除加入暂存
 
 $ git commit -m "注释" % 提交暂存
 
-$ git reset --hard HEAD^ % 版本回退
-% --soft 软回退, 不回退工作区
+$ git diff % 检查当前工作区与指针位置文件的不同
+
+$ git reset [--mixed|--hard|--soft] HEAD^ % 版本回退
+% --mixed: default, 删除(即回退到指定的提交后)暂存; --hard: 删除暂存, 回退工作区; --soft: 仅回退指针
 % HEAD^^ == HEAD~2 == 回退2个版本
 % HEAD^ 也可以替换成对应HASH码
-$ git reset HEAD % 回退工作区(上一次提交)
+$ git reset HEAD (file)% 回退工作区(上一次提交)
 $ git checkout -- <file> ...(<file>) % 删除暂存区
 
 $ git status % 检查未提交修改
 
+$ git branch % 查看全部分支指针
+$ git branch <branch name> % 创建分支指针(default指向master所在分支)
+$ git branch -d <branch name> % 删除分支指针(仅指针, 若指向分支未能合并会报错)
+$ git branch -D <branch name> % 删除分支指针与其下分支
+
+$ git switch <branch name> % 切换分支
+$ git switch -c <branch name> % 创建并切换分支
+
+$ git merge <branch name> % 将目标分支合并于自身
+$ git merge --no-ff -m "注释" <branch name> % 将分支合并视作一次提交(将合并操作加入log)
+
+$ git stash % 临时暂存目前工作, 并将暂存区与工作区回退到指针位置
+$ git stash list % 查看临时暂存库
+$ git stash apply <name> % 恢复stash, <name>缺省上一次stash
+$ git stash drop <name> % 删除stash记录, <name>缺省上一次stash
+$ git stash pop <name> % 恢复stash并删除stash记录, <name>缺省上一次stash
+
 $ git log % 查看提交日志
 $ git reflog % 查看变动日志(用于追踪HASH值)
+
 $ git remote add origin git@github.com:2069661643/learn2usegit.git
 % origin: 仓库名
-$ git push -u origin master
+
+$ git push -u origin <branch name>
 % -u: 习惯加上
+
+
+$ git pull 
+% 分支下拉时会尝试合并, 产生冲突需要手动处理
+
+$ git switch -c <branch name> origin/<branch name>
+% 创建并切换分支, 并关联本地分支与远程库分支
+
+$ git branch --set-upstream-to=origin/<branch name> <branch name>
+% 关联本地分支与远程库分支
+
+% 更新远程库的顺序:
+% Step 0 预备好更新文件;
+% Step 1 推送, 成功则结束;
+% Step 2 尝试下拉;
+% Step 3 当分支未能关联则关联分支;
+% Step 4 当产生冲突在本地解决并且提交;
+% Step 5 goto Step 1.
+
 
 $ git clone xxx.git % 从远程库克隆
