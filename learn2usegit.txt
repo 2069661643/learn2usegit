@@ -23,3 +23,5 @@ $ git remote add origin git@github.com:2069661643/learn2usegit.git
 % origin: 仓库名
 $ git push -u origin master
 % -u: 习惯加上
+
+$ git clone xxx.git % 从远程库克隆
